@@ -18,8 +18,12 @@ const TopBar = () => {
                 </div>
 
                 <div className={styles.rightSide}>
-                    <Link href={'/cart'} className={styles.shoppingCart}>
-                        <i className="fas fa-shopping-cart fa-lg" style={{color: '#002559'}}></i>
+                    <Link href={'/my-profile'} className={`${styles.userProfile} ${styles.iconContainer}`}>
+                        <i className="fas fa-user fa-lg iconContainer"></i>
+                    </Link>
+
+                    <Link href={'/cart'} className={`${styles.shoppingCart} ${styles.iconContainer}`}>
+                        <i className="fas fa-shopping-cart fa-lg"></i>
                     </Link>
                 </div>
 

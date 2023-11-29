@@ -45,13 +45,15 @@
     gap: 1rem;
     align-items: center;
 
-    .shoppingCart {
-      margin-left: 25rem;
-      margin-right: 1rem;
+    .userProfile {
+      margin-left: 15rem;
     }
+
+    .shoppingCart {
+      margin-left: 2.5rem;
+    }
+
   }
-
-
 
   position: relative;
 
@@ -63,4 +65,19 @@
     pointer-events: none;
     box-shadow: 0px 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
   }
+}
+
+.iconContainer {
+  position: relative;
+
+  i {
+    font-size: 1.6em;
+    width: 1.6em;
+    text-align: center;
+    line-height: 1.6em;
+    color: $primary-light;
+    border-radius: 0.8em;
+    border: 1px solid $primary;
+  }
+
 }
