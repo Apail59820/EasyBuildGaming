@@ -1,0 +1,20 @@
+@font-face {
+    font-family: 'Polly';
+    src: url('./fonts/Polly-Regular.otf') format('opentype');
+}
+@font-face {
+    font-family: 'PollyBold';
+    src: url('./fonts/Polly-Bold.otf') format('opentype');
+}
+@font-face {
+    font-family: 'PollyLight';
+    src: url('./fonts/Polly-Light.otf') format('opentype');
+}
+@font-face {
+    font-family: 'PollyThin';
+    src: url('./fonts/Polly-Thin.otf') format('opentype');
+}
+
+body {
+    margin: 0px;
+}
