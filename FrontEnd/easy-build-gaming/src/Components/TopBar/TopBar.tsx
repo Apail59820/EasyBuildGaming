@@ -1,8 +1,15 @@
 import styles from './TopBar.module.scss'
 import Link from "next/link";
-import SearchBox from "@/Components/SearchBox/SearchBox";
+import SearchBox from "../SearchBox/SearchBox";
+
+import { message } from "antd";
+import {useEffect} from "react";
 
 const TopBar = () => {
+
+    useEffect(() => {
+        message.info("yoo");
+    }, []);
 
     return(
         <div className={styles.topBarContainer}>
@@ -25,8 +32,8 @@ const TopBar = () => {
                     <Link href={'/cart'} className={`${styles.shoppingCart} ${styles.iconContainer}`}>
                         <i className="fas fa-shopping-cart fa-lg"></i>
                     </Link>
-                </div>
 
+                </div>
             </nav>
         </div>
     );

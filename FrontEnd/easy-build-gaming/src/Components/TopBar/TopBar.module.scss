@@ -47,10 +47,55 @@
 
     .userProfile {
       margin-left: 15rem;
+      transition: transform 0.5s, opacity 0.5s;
     }
 
     .shoppingCart {
       margin-left: 2.5rem;
+      transition: transform 0.5s, opacity 0.5s;
+    }
+
+    .shoppingCart:hover {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+
+    .shoppingCart:after {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      transform: rotate(-360deg);
+      opacity: inherit;
+      transition: inherit;
+    }
+
+    .shoppingCart:hover:after {
+      opacity: 0;
+    }
+
+    .userProfile:hover {
+      transform: rotate(360deg);
+      opacity: 0.5;
+    }
+
+    .userProfile:after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: inherit;
+      transform: rotate(-360deg);
+      opacity: inherit;
+      transition: inherit;
+    }
+
+    .userProfile:hover:after {
+      opacity: 0;
     }
 
   }
