@@ -3,7 +3,7 @@ import '../styles/globals.css'
 import { AppProps } from "next/app";
 import React from "react";
 import Head from "next/head";
-import TopBar from "@/Components/TopBar/TopBar";
+import TopBar from "../src/Components/TopBar/TopBar";
 
 export default function App({Component, pageProps} : AppProps) {
 
