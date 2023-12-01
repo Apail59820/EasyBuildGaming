@@ -1,15 +1,19 @@
 import styles from './TopBar.module.scss'
 import Link from "next/link";
 import SearchBox from "../SearchBox/SearchBox";
+import {Dropdown} from "antd";
 
-import { message } from "antd";
-import {useEffect} from "react";
+const UserDropdownItems = [
+{key: '1', label: (<b>Mon profil</b>),},
+{key: '2', label: (<b>Se déconnecter</b>), danger: true}
+];
+
+const CartDropdownItems = [
+    {key: '1', label: (<b>Mon panier</b>),},
+    {key: '2', label: (<b>Mes commandes</b>)}
+];
 
 const TopBar = () => {
-
-    useEffect(() => {
-        message.info("yoo");
-    }, []);
 
     return(
         <div className={styles.topBarContainer}>
@@ -25,13 +29,19 @@ const TopBar = () => {
                 </div>
 
                 <div className={styles.rightSide}>
-                    <Link href={'/my-profile'} className={`${styles.userProfile} ${styles.iconContainer}`}>
-                        <i className="fas fa-user fa-lg iconContainer"></i>
-                    </Link>
 
-                    <Link href={'/cart'} className={`${styles.shoppingCart} ${styles.iconContainer}`}>
+                <Link href={'/my-profile'} className={`${styles.userProfile} ${styles.iconContainer}`}>
+                    <Dropdown menu={{items: UserDropdownItems}} arrow={true} placement={"topLeft"}>
+                        <i className="fas fa-user fa-lg iconContainer"></i>
+                    </Dropdown>
+                </Link>
+
+
+                <Link href={'/cart'} className={`${styles.shoppingCart} ${styles.iconContainer}`}>
+                    <Dropdown menu={{items: CartDropdownItems}} arrow={true} placement={"topRight"}>
                         <i className="fas fa-shopping-cart fa-lg"></i>
-                    </Link>
+                    </Dropdown>
+                </Link>
 
                 </div>
             </nav>
