@@ -1,7 +1,10 @@
 const {hash} = require("../utils/encrypt.js");
 const db = require('../db');
+const {generateAccessToken} = require("../utils/generateAccessToken");
 
 exports.login = async (req, res) => {
+
+    console.log(req.accountability);
 
     if (!req.body?.email || !req.body?.password) {
         res.status(400).send({
@@ -14,13 +17,19 @@ exports.login = async (req, res) => {
     const email = req.body.email;
 
     await db.select('*').from('users').where('email', email)
-        .then((results) => {
+        .then(async (results) => {
             if (results.length > 0) {
                 const loggedUser = results.filter(user => user.password === encryptedPassword);
                 if(loggedUser.length){
-                    res.status(200).send({
-                        //TODO auth token
-                        data: loggedUser[0]
+                    let token = generateAccessToken(loggedUser[0].id);
+                    await db('users').where('id', '=', loggedUser[0].id).update({
+                        auth: token
+                    }).then(() => {
+                        res.status(200).send({
+                            data: {
+                                access_token : token
+                            }
+                        });
                     });
                 }else {
                     res.status(403).send({

@@ -4,6 +4,8 @@ const port = 8055
 
 const cors = require("cors");
 
+const authRoutes = require("./App/routes/authRoutes");
+
 var corsOptions = {
     origin: ["http://localhost:3000"]
 };
@@ -14,7 +16,7 @@ app.use(express.json());
 
 app.use(express.urlencoded({ extended: true }));
 
-require("./App/routes/authRoutes")(app);
+app.use('/auth', authRoutes);
 
 app.listen(port, () => {
     console.log(`Server listening on port ${port}`)
