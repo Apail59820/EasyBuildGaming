@@ -9,7 +9,7 @@ function generateAccessToken(user) {
                  },
                 },
         process.env.SECRET_TOKEN,
-        { expiresIn: '10m' }
+        { expiresIn: '30m' }
     );
 }
 
