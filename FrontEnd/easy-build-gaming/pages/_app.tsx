@@ -14,8 +14,6 @@ export default function App({Component, pageProps} : AppProps) {
                 <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
                 <meta name="viewport" content="width=device-width, initial-scalre=1.0"/>
                 <title>EasyBuild</title>
-                <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet"/>
-                <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet"/>
             </Head>
             <header id="header">
                 <TopBar />

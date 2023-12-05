@@ -4,7 +4,7 @@ import {login} from "../services/auth/login";
 const Home = () => {
 
     const click =  () => {
-        login("email", "password").then((res) => {
+        login("amaury.paillart59820@gmail.com", "root").then((res) => {
 
         });
     }
