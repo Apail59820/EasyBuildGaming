@@ -4,8 +4,6 @@ const {generateAccessToken} = require("../utils/generateAccessToken");
 
 exports.login = async (req, res) => {
 
-    console.log(req.accountability);
-
     if (!req.body?.email || !req.body?.password) {
         res.status(400).send({
             message: "Required values : 'email', 'password'"
@@ -19,10 +17,10 @@ exports.login = async (req, res) => {
     await db.select('*').from('users').where('email', email)
         .then(async (results) => {
             if (results.length > 0) {
-                const loggedUser = results.filter(user => user.password === encryptedPassword);
-                if(loggedUser.length){
-                    let token = generateAccessToken(loggedUser[0].id);
-                    await db('users').where('id', '=', loggedUser[0].id).update({
+                const loggedUser = results.filter(user => user.password === encryptedPassword)[0];
+                if(loggedUser){
+                    let token = generateAccessToken(loggedUser);
+                    await db('users').where('id', '=', loggedUser.id).update({
                         auth: token
                     }).then(() => {
                         res.status(200).send({
