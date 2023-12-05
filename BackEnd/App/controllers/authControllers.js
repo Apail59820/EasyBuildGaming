@@ -1,6 +1,7 @@
 const {hash} = require("../utils/encrypt.js");
 const db = require('../db');
 const {generateAccessToken} = require("../utils/generateAccessToken");
+const {getTokenExpirationDate} = require("../utils/getTokenExpirationDate");
 
 exports.login = async (req, res) => {
 
@@ -20,12 +21,16 @@ exports.login = async (req, res) => {
                 const loggedUser = results.filter(user => user.password === encryptedPassword)[0];
                 if(loggedUser){
                     let token = generateAccessToken(loggedUser);
+                    let expires = getTokenExpirationDate(token);
+                    if(!token) return res.status(500).send({data: "Unknown error occurred"});
+
                     await db('users').where('id', '=', loggedUser.id).update({
                         auth: token
                     }).then(() => {
                         res.status(200).send({
                             data: {
-                                access_token : token
+                                access_token : token,
+                                expires : expires
                             }
                         });
                     });
