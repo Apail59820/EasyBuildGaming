@@ -10,24 +10,10 @@ const accountabilityMiddleware = (req, res, next) => {
 
         try{
             const webtoken = jwt.verify(token, process.env.SECRET_TOKEN);
-
-            db.select('*').from('users').where('id', webtoken.userId)
-                .then( (results) => {
-                if(results.length) {
-                    let user = results[0];
-                    req.accountability = {
-                        user: {
-                            first_name: user.first_name,
-                            last_name: user.last_name
-                        },
-                        role: user.role,
-                        id: user.id
-                    }
-                    next();
-                }
-            })
+            req.accountability = webtoken.data;
+            next();
         }catch(e) {
-            // TokenExpired
+            return res.status(403).send({data: e});
         }
     }
 };
